@@ -1,14 +1,14 @@
-//accept user inputs of number, operator, and number
-//should accept decimel numbers
-//store inputs
-//recognize inputs and perform calculations
+//accept user inputs of number, operator, and number - done
+//should accept decimel numbers - done
+//store inputs - done
+//recognize inputs and perform calculations - done
 //result
 
 //additional features
-//accept longer arithmetic operations
-//display all input as it is being entered
-//store previous total as start of next operation
-//clear button should clear all entries
+//accept longer arithmetic operations - done
+//display all input as it is being entered - done
+//store previous total as start of next operation - done
+//clear button should clear all entries - done
 //should prevent invalid inputs (like operators next to each other, two decimal points)
 
 const keys = document.querySelector('.calculator-buttons')
@@ -32,10 +32,10 @@ const calculator = {
     //have any of the "special buttons" been clicked
     switch (value) {
       case '=':
-        //calculate answer
+        this.calcAnswer(this.displayText)
         break;
       case 'AC':
-        //clear screen
+        this.clearAll()
         break;
       case '.':
         if (this.displayText === 0) {
@@ -67,5 +67,16 @@ const calculator = {
 
   outputText(text) {
     document.querySelector('.calculator-screen').value = text
+  },
+
+  calcAnswer(equation) {
+    let result = Function('return ' + equation)()
+    this.outputText(result)
+  },
+
+  clearAll() {
+    this.displayText = '0'
+    this.prevTotal = null
+    this.outputText(this.displayText)
   }
 }
